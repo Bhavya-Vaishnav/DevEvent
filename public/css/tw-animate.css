@@ -1,0 +1,209 @@
+@property --tw-animation-delay {
+    syntax: "<time>";
+    inherits: false;
+    initial-value: 0s;
+}
+
+@property --tw-animation-direction {
+    syntax: "<string>";
+    inherits: false;
+    initial-value: normal;
+}
+
+@property --tw-animation-duration {
+    syntax: "<time>";
+    inherits: false;
+    initial-value: 0s;
+}
+
+@property --tw-animation-fill-mode {
+    syntax: "<string>";
+    inherits: false;
+    initial-value: none;
+}
+
+@property --tw-animation-iteration-count {
+    syntax: "<number>";
+    inherits: false;
+    initial-value: 1;
+}
+
+@property --tw-enter-blur {
+    syntax: "<length>";
+    inherits: false;
+    initial-value: 0;
+}
+
+@property --tw-enter-opacity {
+    syntax: "<number>";
+    inherits: false;
+    initial-value: 1;
+}
+
+@property --tw-enter-rotate {
+    syntax: "<angle>";
+    inherits: false;
+    initial-value: 0deg;
+}
+
+@property --tw-enter-scale {
+    syntax: "<number>";
+    inherits: false;
+    initial-value: 1;
+}
+
+@property --tw-enter-translate-x {
+    syntax: "<length>";
+    inherits: false;
+    initial-value: 0;
+}
+
+@property --tw-enter-translate-y {
+    syntax: "<length>";
+    inherits: false;
+    initial-value: 0;
+}
+
+@property --tw-exit-blur {
+    syntax: "<length>";
+    inherits: false;
+    initial-value: 0;
+}
+
+@property --tw-exit-opacity {
+    syntax: "<number>";
+    inherits: false;
+    initial-value: 1;
+}
+
+@property --tw-exit-rotate {
+    syntax: "<angle>";
+    inherits: false;
+    initial-value: 0deg;
+}
+
+@property --tw-exit-scale {
+    syntax: "<number>";
+    inherits: false;
+    initial-value: 1;
+}
+
+@property --tw-exit-translate-x {
+    syntax: "<length>";
+    inherits: false;
+    initial-value: 0;
+}
+
+@property --tw-exit-translate-y {
+    syntax: "<length>";
+    inherits: false;
+    initial-value: 0;
+}
+
+@keyframes enter {
+    from {
+        opacity: var(--tw-enter-opacity, 1);
+        transform: translate3d(
+                var(--tw-enter-translate-x, 0),
+                var(--tw-enter-translate-y, 0),
+                0
+        )
+        scale3d(
+                var(--tw-enter-scale, 1),
+                var(--tw-enter-scale, 1),
+                var(--tw-enter-scale, 1)
+        )
+        rotate(var(--tw-enter-rotate, 0));
+        filter: blur(var(--tw-enter-blur, 0));
+    }
+}
+
+@keyframes exit {
+    to {
+        opacity: var(--tw-exit-opacity, 1);
+        transform: translate3d(
+                var(--tw-exit-translate-x, 0),
+                var(--tw-exit-translate-y, 0),
+                0
+        )
+        scale3d(
+                var(--tw-exit-scale, 1),
+                var(--tw-exit-scale, 1),
+                var(--tw-exit-scale, 1)
+        )
+        rotate(var(--tw-exit-rotate, 0));
+        filter: blur(var(--tw-exit-blur, 0));
+    }
+}
+
+@keyframes accordion-down {
+    from {
+        height: 0;
+    }
+    to {
+        height: var(
+                --radix-accordion-content-height,
+                var(
+                        --bits-accordion-content-height,
+                        var(
+                                --reka-accordion-content-height,
+                                var(--kb-accordion-content-height, auto)
+                        )
+                )
+        );
+    }
+}
+
+@keyframes accordion-up {
+    from {
+        height: var(
+                --radix-accordion-content-height,
+                var(
+                        --bits-accordion-content-height,
+                        var(
+                                --reka-accordion-content-height,
+                                var(--kb-accordion-content-height, auto)
+                        )
+                )
+        );
+    }
+    to {
+        height: 0;
+    }
+}
+
+@keyframes collapsible-down {
+    from {
+        height: 0;
+    }
+    to {
+        height: var(
+                --radix-collapsible-content-height,
+                var(
+                        --bits-collapsible-content-height,
+                        var(
+                                --reka-collapsible-content-height,
+                                var(--kb-collapsible-content-height, auto)
+                        )
+                )
+        );
+    }
+}
+
+@keyframes collapsible-up {
+    from {
+        height: var(
+                --radix-collapsible-content-height,
+                var(
+                        --bits-collapsible-content-height,
+                        var(
+                                --reka-collapsible-content-height,
+                                var(--kb-collapsible-content-height, auto)
+                        )
+                )
+        );
+    }
+    to {
+        height: 0;
+    }
+}
