@@ -1,3 +1,5 @@
+export const dynamic = "force-dynamic";
+
 import EventsClient from "./EventsClient";
 import { getAllEvents } from "@/lib/actions/event.actions";
 

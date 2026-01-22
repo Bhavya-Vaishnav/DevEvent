@@ -6,8 +6,6 @@ import ExploreBtn from "@/components/ExploreBtn";
 
 const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL ;
 const Page = async() => {
-    'use cache';
-    cacheLife('hours');
     const response = await fetch(`${BASE_URL}/api/events`, {
         next: { revalidate: 3600 }
     });
