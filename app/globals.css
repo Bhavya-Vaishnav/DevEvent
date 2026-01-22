@@ -3,6 +3,32 @@
 
 @custom-variant dark (&:is(.dark *));
 
+/* Reset shadcn influence for raw HTML forms */
+.raw-form input,
+.raw-form textarea,
+.raw-form select {
+    all: unset;
+    box-sizing: border-box;
+    width: 100%;
+    font-family: inherit;
+}
+
+/* Re-apply only what YOU want */
+.raw-form input,
+.raw-form textarea {
+    padding: 0.6rem 0.75rem;
+    border-radius: 0.5rem;
+    border: 1px solid hsl(var(--border));
+    background: rgba(255, 255, 255, 0.03);
+    color: hsl(var(--foreground));
+}
+
+.raw-form input:focus,
+.raw-form textarea:focus {
+    outline: none;
+    border-color: hsl(var(--primary));
+}
+
 :root {
     --color-blue: #94eaff;
     --color-light-100: #e7f2ff;

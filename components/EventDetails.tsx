@@ -64,18 +64,18 @@ const EventDetails = async ({ params }: { params: Promise<string> }) => {
         return notFound();
     }
 
-    const { description, image, overview, date, time, location, mode, agenda, audience, tags, organizer } = event;
+    const {title, description, image, overview, date, time, location, mode, agenda, audience, tags, organizer } = event;
 
     if(!description) return notFound();
 
     const bookings = 10;
 
-    const similarEvents: IEvent[] = await getSimilarEventsBySlug(slug);
+    const similarEvents = await getSimilarEventsBySlug(slug);
 
     return (
         <section id="event">
             <div className="header">
-                <h1>Event Description</h1>
+                <h1>{title}</h1>
                 <p>{description}</p>
             </div>
 

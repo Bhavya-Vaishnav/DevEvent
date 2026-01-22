@@ -22,7 +22,7 @@ const Page = async() => {
                 <ul className="events list-none">
                     {events && events.length>0 && events.map((event:IEvent)=>(
                         <li key={event.title}>
-                            <EventCard {...event}/>
+                            <EventCard {...event} eventId={event.id ?? event.title} />
                         </li>
                     ))}
                 </ul>

@@ -11,8 +11,8 @@ const NavBar = () => {
                 </Link>
                 <ul className="list-none">
                     <li><Link href="/">Home</Link></li>
-                    <li><Link href="/">Events</Link></li>
-                    <li><Link href="/">Create Event</Link></li>
+                    <li><Link href="/events">Events</Link></li>
+                    <li><Link href="/events/create">Create Event</Link></li>
                 </ul>
             </nav>
         </header>
