@@ -379,4 +379,113 @@
         background: #0d161a;
         color: var(--color-light-100);
     }
+
+    /* ─── Sign-In Page ─── */
+    #signin-page {
+        @apply flex-center min-h-[80vh];
+    }
+
+    .signin-card {
+        @apply flex flex-col items-center gap-6 p-10 rounded-2xl max-w-md w-full;
+        background: rgba(13, 22, 26, 0.7);
+        border: 1px solid rgba(89, 222, 202, 0.15);
+        backdrop-filter: blur(24px);
+        box-shadow:
+            0 0 60px rgba(89, 222, 202, 0.06),
+            0 4px 40px rgba(0, 0, 0, 0.4);
+        animation: signin-fade-in 0.5s ease-out;
+    }
+
+    .signin-card:hover {
+        border-color: rgba(89, 222, 202, 0.25);
+        box-shadow:
+            0 0 80px rgba(89, 222, 202, 0.1),
+            0 4px 40px rgba(0, 0, 0, 0.4);
+        transition: all 0.4s ease;
+    }
+
+    .signin-logo {
+        @apply flex items-center gap-3 text-xl font-bold text-white no-underline;
+    }
+
+    .signin-heading {
+        @apply text-center flex flex-col gap-2;
+
+        h2 {
+            @apply text-3xl font-bold;
+        }
+
+        p {
+            @apply text-sm text-gray-400;
+        }
+    }
+
+    .signin-divider {
+        @apply w-full flex items-center gap-4;
+
+        &::before,
+        &::after {
+            content: "";
+            @apply flex-1 h-px;
+            background: linear-gradient(
+                90deg,
+                transparent,
+                rgba(89, 222, 202, 0.2),
+                transparent
+            );
+        }
+
+        span {
+            @apply text-xs text-gray-500 uppercase tracking-widest whitespace-nowrap;
+        }
+    }
+
+    .signin-providers {
+        @apply w-full flex flex-col gap-3;
+    }
+
+    .signin-btn {
+        @apply w-full flex items-center justify-center gap-3 py-3 px-5 rounded-xl text-sm font-semibold cursor-pointer transition-all duration-200;
+        border: 1px solid var(--border);
+        background: rgba(24, 40, 48, 0.5);
+        color: var(--foreground);
+    }
+
+    .signin-btn:hover {
+        border-color: var(--primary);
+        background: rgba(89, 222, 202, 0.08);
+        transform: translateY(-1px);
+        box-shadow: 0 4px 20px rgba(89, 222, 202, 0.15);
+    }
+
+    .signin-btn:active {
+        transform: translateY(0);
+    }
+
+    .signin-btn.github:hover {
+        border-color: #c9d1d9;
+        background: rgba(201, 209, 217, 0.08);
+        box-shadow: 0 4px 20px rgba(201, 209, 217, 0.1);
+    }
+
+    .signin-btn.google:hover {
+        border-color: #4285f4;
+        background: rgba(66, 133, 244, 0.08);
+        box-shadow: 0 4px 20px rgba(66, 133, 244, 0.1);
+    }
+
+    .signin-footer {
+        @apply text-xs text-gray-600 text-center mt-2;
+    }
+
+    @keyframes signin-fade-in {
+        from {
+            opacity: 0;
+            transform: translateY(16px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
 }

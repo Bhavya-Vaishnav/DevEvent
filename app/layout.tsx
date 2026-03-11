@@ -19,6 +19,8 @@ export const metadata: Metadata = {
     description: "The Hub for Every Dev Event You Mustn't Miss",
 };
 
+import AuthProvider from "@/components/AuthProvider";
+
 export default function RootLayout({children,}: Readonly<{
     children: React.ReactNode;
 }>) {
@@ -27,11 +29,13 @@ export default function RootLayout({children,}: Readonly<{
         <body
             className={`${schibstedGrotesk.variable} ${martianMono.variable} min-h-screen antialiased`}
         >
-        <BackgroundEffects />
-        <main>
-            <NavBar/>
-            {children}
-        </main>
+        <AuthProvider>
+            <BackgroundEffects />
+            <main>
+                <NavBar/>
+                {children}
+            </main>
+        </AuthProvider>
         </body>
         </html>
     );

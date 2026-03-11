@@ -2,12 +2,16 @@
 'use server';
 import {unstable_noStore as noStore} from "next/cache";
 import {redirect} from "next/navigation";
+import {getServerSession} from "next-auth";
+import {authOptions} from "@/lib/auth";
 import Event, {IEvent} from '@/database/event.model';
 import connectDB from "@/lib/mongodb";
 
 export type EventItem = {
     _id: string;
     title: string;
+    description: string;
+    overview: string;
     image: string;
     slug: string;
     location: string;
@@ -15,6 +19,9 @@ export type EventItem = {
     time: string;
     category: string;
     mode: string;
+    audience: string;
+    organizer: string;
+    agenda: string[];
     tags: string[];
 };
 export const getSimilarEventsBySlug = async (slug: string) => {
@@ -40,6 +47,18 @@ export async function getAllEvents(): Promise<EventItem[]> {
     }
 }
 
+export async function getEventBySlug(slug: string): Promise<EventItem | null> {
+    noStore();
+    try {
+        await connectDB();
+        const event = (await Event.findOne({ slug }).lean()) as unknown as EventItem;
+        return event || null;
+    } catch (e) {
+        console.error("getEventBySlug error:", e);
+        return null;
+    }
+}
+
 export const createEvent = async (event: Partial<IEvent>): Promise<IEvent | null> => {
     noStore();
     try {
@@ -54,6 +73,12 @@ export const createEvent = async (event: Partial<IEvent>): Promise<IEvent | null
 
 export async function createEventFromForm(formData: FormData) {
     noStore();
+
+    // Auth guard: reject unauthenticated users
+    const session = await getServerSession(authOptions);
+    if (!session) {
+        redirect("/signin");
+    }
 
     const getString = (key: string) => {
         const v = formData.get(key);

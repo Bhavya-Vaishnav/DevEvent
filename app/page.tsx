@@ -2,24 +2,17 @@ import React from 'react'
 import EventCard from "@/components/EventCard";
 import ExploreBtn from "@/components/ExploreBtn";
 import {events as fallbackEvents} from "@/lib/constants";
+import { getAllEvents } from "@/lib/actions/event.actions";
 
 export const dynamic = "force-dynamic";
-
-const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL;
 
 const Page = async() => {
     let events: any[] = [];
 
     try {
-        const response = await fetch(`${BASE_URL}/api/events`, {
-            cache: 'no-store'
-        });
-
-        if (response.ok) {
-            events = await response.json();
-        }
+        events = await getAllEvents() as any[];
     } catch (error) {
-        console.error("Failed to fetch events from API, using fallback data:", error);
+        console.error("Failed to fetch events from DB, using fallback data:", error);
     }
 
     // Fallback to dummy data if API fails or returns empty
