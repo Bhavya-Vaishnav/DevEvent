@@ -13,6 +13,9 @@ export type EventItem = {
     location: string;
     date: string;
     time: string;
+    category: string;
+    mode: string;
+    tags: string[];
 };
 export const getSimilarEventsBySlug = async (slug: string) => {
     noStore();
@@ -60,22 +63,38 @@ export async function createEventFromForm(formData: FormData) {
     };
 
     const title = getString('title');
-    const venue = getString('venue');
+    const description = getString('description');
+    const overview = getString('overview');
     const image = getString('image');
+    const venue = getString('venue');
     const location = getString('location');
     const date = getString('date');
     const time = getString('time');
+    const category = getString('category');
+    const mode = getString('mode');
+    const audience = getString('audience');
+    const organizer = getString('organizer');
 
     const agendaRaw = getString('agenda');
     const agenda = agendaRaw ? agendaRaw.split(/\r?\n/).map(i => i.trim()).filter(Boolean) : [];
 
-    // Validate and throw errors to trigger `error.tsx`
+    const tagsRaw = getString('tags');
+    const tags = tagsRaw ? tagsRaw.split(',').map(t => t.trim()).filter(Boolean) : [];
+
+    // Validate required fields
     const missing = [];
     if (!title) missing.push('title');
+    if (!description) missing.push('description');
+    if (!overview) missing.push('overview');
     if (!image) missing.push('image');
     if (!date) missing.push('date');
     if (!time) missing.push('time');
+    if (!category) missing.push('category');
+    if (!mode) missing.push('mode');
+    if (!audience) missing.push('audience');
+    if (!organizer) missing.push('organizer');
     if (agenda.length === 0) missing.push('agenda');
+    if (tags.length === 0) missing.push('tags');
 
     if (missing.length > 0) {
         throw new Error(`Missing required fields: ${missing.join(', ')}`);
@@ -83,14 +102,20 @@ export async function createEventFromForm(formData: FormData) {
 
     const event: Partial<IEvent> = {
         title,
-        venue,
+        description,
+        overview,
         image,
-        location,
+        venue,
+        location: location || (mode === 'online' ? 'Online' : ''),
         date,
         time,
+        category,
+        mode,
+        audience,
+        organizer,
         agenda,
-        // ...other fields read similarly
-        slug: title ? title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)+/g, '') : undefined,
+        tags,
+        slug: title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)+/g, ''),
     };
 
     const created = await createEvent(event);

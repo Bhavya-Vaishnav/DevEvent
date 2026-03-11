@@ -19,22 +19,25 @@ export function DateAndTime() {
     const [time, setTime] = React.useState("")
 
     return (
-        <div className="flex gap-10">
+        <div className="flex gap-6 w-full">
 
             {/* DATE */}
-            <div className="flex flex-col gap-3">
-                <Label htmlFor="date-picker" className="px-1">
-                    Date
+            <div className="flex flex-col gap-1 flex-1">
+                <Label htmlFor="date-picker" className="text-sm text-gray-300">
+                    Date <span className="text-red-400">*</span>
                 </Label>
 
                 <Popover open={open} onOpenChange={setOpen}>
                     <PopoverTrigger asChild>
                         <Button
                             id="date-picker"
-                            className="w-32 bg-background/60 justify-between font-normal hover:bg-background/60"
+                            variant="outline"
+                            className="w-full bg-[#182830]/60 border-gray-700 justify-between font-normal text-sm py-2.5 h-auto hover:bg-[#182830]/80 hover:border-[#59deca] transition-colors text-white"
                         >
-                            {date ? date.toLocaleDateString() : "Select date"}
-                            <ChevronDownIcon />
+                            <span className={date ? "text-white" : "text-gray-500"}>
+                                {date ? date.toLocaleDateString() : "Select date"}
+                            </span>
+                            <ChevronDownIcon className="size-4 text-gray-400" />
                         </Button>
                     </PopoverTrigger>
 
@@ -63,9 +66,9 @@ export function DateAndTime() {
             </div>
 
             {/* TIME */}
-            <div className="flex flex-col gap-3">
-                <Label htmlFor="time-picker" className="px-1">
-                    Time
+            <div className="flex flex-col gap-1 flex-1">
+                <Label htmlFor="time-picker" className="text-sm text-gray-300">
+                    Time <span className="text-red-400">*</span>
                 </Label>
 
                 <Input
@@ -73,7 +76,7 @@ export function DateAndTime() {
                     id="time-picker"
                     value={time}
                     onChange={(e) => setTime(e.target.value)}
-                    className="bg-background appearance-none"
+                    className="bg-[#182830]/60 border-gray-700 py-2.5 h-auto text-sm text-white appearance-none focus:border-[#59deca] transition-colors"
                 />
 
                 {/* ✅ HIDDEN INPUT FOR TIME */}

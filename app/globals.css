@@ -11,6 +11,9 @@
     box-sizing: border-box;
     width: 100%;
     font-family: inherit;
+    color: hsl(var(--foreground));
+    font-size: 0.875rem;
+    line-height: 1.25rem;
 }
 
 /* Re-apply only what YOU want */
@@ -29,6 +32,33 @@
     border-color: hsl(var(--primary));
 }
 
+/* Select dropdown styling for dark theme */
+.raw-form select {
+    padding: 0.6rem 0.75rem;
+    border-radius: 0.5rem;
+    border: 1px solid hsl(var(--border));
+    background: rgba(255, 255, 255, 0.03);
+    color: hsl(var(--foreground));
+    cursor: pointer;
+    appearance: none;
+    -webkit-appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%239ca3af' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 0.75rem center;
+    padding-right: 2.5rem;
+}
+
+.raw-form select:focus {
+    outline: none;
+    border-color: hsl(var(--primary));
+}
+
+.raw-form select option {
+    background: #0d161a;
+    color: hsl(var(--foreground));
+    padding: 0.5rem;
+}
+
 :root {
     --color-blue: #94eaff;
     --color-light-100: #e7f2ff;
@@ -39,22 +69,22 @@
     --radius: 0.625rem;
     --background: #030708;
     --foreground: #ffffff;
-    --card: oklch(1 0 0);
-    --card-foreground: oklch(0.145 0 0);
-    --popover: oklch(1 0 0);
-    --popover-foreground: oklch(0.145 0 0);
+    --card: #0d161a;
+    --card-foreground: #ffffff;
+    --popover: #0d161a;
+    --popover-foreground: #ffffff;
     --primary: #59deca;
     --primary-foreground: oklch(0.985 0 0);
-    --secondary: oklch(0.97 0 0);
-    --secondary-foreground: oklch(0.205 0 0);
-    --muted: oklch(0.97 0 0);
-    --muted-foreground: oklch(0.556 0 0);
-    --accent: oklch(0.97 0 0);
-    --accent-foreground: oklch(0.205 0 0);
+    --secondary: #182830;
+    --secondary-foreground: #e7f2ff;
+    --muted: #182830;
+    --muted-foreground: #9ca3af;
+    --accent: #1e3a4a;
+    --accent-foreground: #e7f2ff;
     --destructive: oklch(0.577 0.245 27.325);
-    --border: oklch(0.922 0 0);
-    --input: oklch(0.922 0 0);
-    --ring: oklch(0.708 0 0);
+    --border: #2d3748;
+    --input: #2d3748;
+    --ring: #59deca;
     --chart-1: oklch(0.646 0.222 41.116);
     --chart-2: oklch(0.6 0.118 184.704);
     --chart-3: oklch(0.398 0.07 227.392);
@@ -295,5 +325,58 @@
                 @apply bg-primary hover:bg-primary/90 w-full cursor-pointer items-center justify-center rounded-[6px] px-4 py-2.5 text-lg font-semibold text-black;
             }
         }
+    }
+
+    .filters-bar {
+        @apply flex flex-col gap-5 mb-8 p-5 rounded-xl border border-gray-700/50;
+        background: rgba(13, 17, 23, 0.7);
+        backdrop-filter: blur(12px);
+    }
+
+    .filter-group {
+        @apply flex flex-col sm:flex-row sm:items-center gap-2;
+    }
+
+    .filter-label {
+        @apply text-light-200 text-sm font-medium min-w-[70px];
+    }
+
+    .filter-pills {
+        @apply flex flex-row flex-wrap gap-2;
+    }
+
+    .filter-pill {
+        @apply px-4 py-1.5 rounded-full text-sm cursor-pointer border border-gray-700 transition-all duration-200;
+        background: rgba(24, 40, 48, 0.6);
+        color: var(--color-light-200);
+    }
+
+    .filter-pill:hover {
+        border-color: var(--primary);
+        color: var(--foreground);
+    }
+
+    .filter-pill.active {
+        background: var(--primary);
+        color: #000;
+        border-color: var(--primary);
+        font-weight: 600;
+    }
+
+    .sort-select {
+        @apply px-4 py-1.5 rounded-lg text-sm border border-gray-700 cursor-pointer outline-none transition-all duration-200;
+        background: rgba(24, 40, 48, 0.6);
+        color: var(--color-light-200);
+        appearance: auto;
+    }
+
+    .sort-select:hover,
+    .sort-select:focus {
+        border-color: var(--primary);
+    }
+
+    .sort-select option {
+        background: #0d161a;
+        color: var(--color-light-100);
     }
 }

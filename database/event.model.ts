@@ -12,6 +12,7 @@ export interface IEvent extends Document {
     date: string;
     time: string;
     mode: string;
+    category: string;
     audience: string;
     agenda: string[];
     organizer: string;
@@ -62,6 +63,14 @@ const EventSchema = new Schema<IEvent>(
         time: {
             type: String,
             required: [true, 'Time is required'],
+        },
+        category: {
+            type: String,
+            required: [true, 'Category is required'],
+            enum: {
+                values: ['hackathon', 'conference', 'meetup', 'workshop', 'webinar'],
+                message: 'Category must be one of: hackathon, conference, meetup, workshop, webinar',
+            },
         },
         mode: {
             type: String,
